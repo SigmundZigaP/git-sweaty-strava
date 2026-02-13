@@ -4,7 +4,7 @@ Turn your Strava activities into GitHub-style contribution heatmaps.
 Automatically generates a free, interactive dashboard updated daily on GitHub Pages.  
 **No coding required.**  
 
-- View the Interactive [Activity Dashboard](https://aspain.github.io/git-sweaty/)
+- View the Interactive [Activity Dashboard](https://SigmundZigaP.github.io/git-sweaty-strava/)
 - Once setup is complete, this dashboard link will automatically update to your own GitHub Pages URL.
 
 
