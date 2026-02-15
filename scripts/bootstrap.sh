@@ -5,6 +5,7 @@ DEFAULT_UPSTREAM_REPO="${GIT_SWEATY_UPSTREAM_REPO:-aspain/git-sweaty}"
 SETUP_SCRIPT_REL="scripts/setup_auth.py"
 BOOTSTRAP_SELECTED_REPO_DIR=""
 BOOTSTRAP_DETECTED_FORK_REPO=""
+BOOTSTRAP_SELECTED_FORK_REPO=""
 
 info() {
   printf '%s\n' "$*"
@@ -76,8 +77,105 @@ prompt_yes_no() {
         ;;
       y|yes) return 0 ;;
       n|no) return 1 ;;
-      *) info "Please enter y or n." ;;
+      *) printf '%s\n' "Please enter y or n." >&2 ;;
     esac
+  done
+}
+
+trim_whitespace() {
+  local value="$1"
+  printf '%s' "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+prompt_setup_mode() {
+  local choice
+  printf '\n' >&2
+  printf '%s\n' "Choose setup mode:" >&2
+  printf '%s\n' "  1) Local mode (fork + clone + local setup)" >&2
+  printf '%s\n' "  2) Online mode (no local clone; configure GitHub directly)" >&2
+
+  while true; do
+    read -r -p "Select option [1/2] (default: 1): " choice || return 1
+    choice="$(trim_whitespace "$choice")"
+    choice="$(printf '%s' "$choice" | tr '[:upper:]' '[:lower:]')"
+    case "$choice" in
+      ""|1|local|local\ mode)
+        printf '%s\n' "local"
+        return 0
+        ;;
+      2|online|online\ mode)
+        printf '%s\n' "online"
+        return 0
+        ;;
+      *)
+        printf '%s\n' "Please enter 1 or 2." >&2
+        ;;
+    esac
+  done
+}
+
+prompt_fork_name() {
+  local default_name="$1"
+  local answer
+
+  if ! prompt_yes_no "Use a custom name for your fork?" "N"; then
+    printf '%s\n' "$default_name"
+    return 0
+  fi
+
+  while true; do
+    read -r -p "Fork name (repo only, default: ${default_name}): " answer || return 1
+    answer="$(trim_whitespace "$answer")"
+    if [[ -z "$answer" ]]; then
+      answer="$default_name"
+    fi
+
+    if [[ "$answer" =~ ^[A-Za-z0-9._-]+$ ]]; then
+      printf '%s\n' "$answer"
+      return 0
+    fi
+    warn "Invalid fork name. Use only letters, numbers, '.', '_' or '-'."
+  done
+}
+
+is_valid_repo_slug() {
+  local slug="$1"
+  [[ "$slug" =~ ^[^/[:space:]]+/[^/[:space:]]+$ ]]
+}
+
+prompt_repo_slug() {
+  local default_repo="${1:-}"
+  local prompt answer
+  prompt="Repository to configure (OWNER/REPO)"
+  if [[ -n "$default_repo" ]]; then
+    prompt="${prompt} (default: ${default_repo})"
+  fi
+  prompt="${prompt}: "
+
+  while true; do
+    read -r -p "$prompt" answer || return 1
+    answer="$(trim_whitespace "$answer")"
+    if [[ -z "$answer" ]]; then
+      if [[ -n "$default_repo" ]]; then
+        answer="$default_repo"
+      else
+        printf '%s\n' "A repository slug is required." >&2
+        continue
+      fi
+    fi
+
+    if ! is_valid_repo_slug "$answer"; then
+      printf '%s\n' "Invalid format. Please enter OWNER/REPO." >&2
+      continue
+    fi
+
+    if ! gh repo view "$answer" >/dev/null 2>&1; then
+      warn "Repository is not accessible with current gh auth: $answer"
+      continue
+    fi
+
+    printf '%s\n' "$answer"
+    return 0
   done
 }
 
@@ -179,6 +277,46 @@ resolve_fork_repo() {
   fi
 
   fail "Unable to find an accessible fork for ${upstream_repo} under ${login}. Set GIT_SWEATY_FORK_REPO=<owner>/<repo> and retry."
+}
+
+ensure_fork_exists() {
+  local upstream_repo="$1"
+  local login existing_fork fork_repo fork_name default_fork_name
+  local fork_cmd
+
+  BOOTSTRAP_SELECTED_FORK_REPO=""
+  ensure_gh_auth
+
+  login="$(gh api user --jq .login 2>/dev/null || true)"
+  [[ -n "$login" ]] || fail "Unable to resolve GitHub username from current gh auth session."
+
+  existing_fork="$(detect_existing_fork_repo "$upstream_repo" "$login" || true)"
+  if [[ -n "$existing_fork" ]]; then
+    info "Using existing fork repository: $existing_fork"
+    gh repo view "$existing_fork" >/dev/null 2>&1 || fail "Fork is not accessible: $existing_fork"
+    BOOTSTRAP_SELECTED_FORK_REPO="$existing_fork"
+    return 0
+  fi
+
+  default_fork_name="$(repo_name_from_slug "$upstream_repo")"
+  fork_name="$(prompt_fork_name "$default_fork_name")"
+  fork_repo="${login}/${fork_name}"
+  info "Creating fork repository: $fork_repo"
+
+  fork_cmd=(gh repo fork "$upstream_repo" --clone=false --remote=false)
+  if [[ "$fork_name" != "$default_fork_name" ]]; then
+    fork_cmd+=(--fork-name "$fork_name")
+  fi
+  if ! "${fork_cmd[@]}" >/dev/null 2>&1; then
+    warn "Fork creation command did not succeed cleanly. Continuing if fork already exists."
+  fi
+
+  if ! gh repo view "$fork_repo" >/dev/null 2>&1; then
+    fork_repo="$(resolve_fork_repo "$upstream_repo" "$login")"
+  fi
+
+  gh repo view "$fork_repo" >/dev/null 2>&1 || fail "Fork is not accessible: $fork_repo"
+  BOOTSTRAP_SELECTED_FORK_REPO="$fork_repo"
 }
 
 detect_local_repo_root() {
@@ -377,19 +515,11 @@ auto_detect_existing_compatible_clone() {
 fork_and_clone() {
   local upstream_repo="$1"
   local repo_dir="$2"
-  local login fork_repo
+  local fork_repo
 
-  ensure_gh_auth
-
-  login="$(gh api user --jq .login 2>/dev/null || true)"
-  [[ -n "$login" ]] || fail "Unable to resolve GitHub username from current gh auth session."
-  info "Ensuring fork exists for ${login}"
-  if ! gh repo fork "$upstream_repo" --clone=false --remote=false >/dev/null 2>&1; then
-    warn "Fork creation command did not succeed cleanly. Continuing if fork already exists."
-  fi
-  fork_repo="$(resolve_fork_repo "$upstream_repo" "$login")"
+  ensure_fork_exists "$upstream_repo"
+  fork_repo="$BOOTSTRAP_SELECTED_FORK_REPO"
   info "Using fork repository: $fork_repo"
-  gh repo view "$fork_repo" >/dev/null 2>&1 || fail "Fork is not accessible: $fork_repo"
   local preferred_repo_dir
   preferred_repo_dir="$(prefer_existing_fork_clone_dir "$repo_dir" "$fork_repo")"
   if [[ "$preferred_repo_dir" != "$repo_dir" ]]; then
@@ -407,6 +537,48 @@ fork_and_clone() {
 
   configure_fork_remotes "$repo_dir" "$upstream_repo" "$fork_repo"
   BOOTSTRAP_SELECTED_REPO_DIR="$repo_dir"
+}
+
+run_online_setup() {
+  local upstream_repo="$1"
+  shift || true
+  local login target_repo default_branch setup_url tmp_dir setup_script status
+
+  require_cmd curl
+  require_cmd python3
+  ensure_gh_auth
+
+  login="$(gh api user --jq .login 2>/dev/null || true)"
+  [[ -n "$login" ]] || fail "Unable to resolve GitHub username from current gh auth session."
+
+  if prompt_yes_no "Fork the repo to your GitHub account first?" "Y"; then
+    ensure_fork_exists "$upstream_repo"
+    target_repo="$BOOTSTRAP_SELECTED_FORK_REPO"
+  else
+    target_repo="$(prompt_repo_slug "$(detect_existing_fork_repo "$upstream_repo" "$login" || true)")"
+  fi
+
+  default_branch="$(gh api "repos/${upstream_repo}" --jq .default_branch 2>/dev/null || true)"
+  [[ -n "$default_branch" ]] || default_branch="main"
+  setup_url="https://raw.githubusercontent.com/${upstream_repo}/${default_branch}/${SETUP_SCRIPT_REL}"
+  tmp_dir="$(mktemp -d)"
+  setup_script="${tmp_dir}/setup_auth.py"
+
+  info "Downloading setup helper from ${setup_url}"
+  if ! curl -fsSL "$setup_url" -o "$setup_script"; then
+    rm -rf "$tmp_dir"
+    fail "Unable to download setup helper from ${setup_url}"
+  fi
+
+  info ""
+  info "Launching online setup (no local clone)..."
+  set +e
+  python3 "$setup_script" --repo "$target_repo" "$@"
+  status=$?
+  set -e
+
+  rm -rf "$tmp_dir"
+  return "$status"
 }
 
 clone_upstream() {
@@ -440,25 +612,33 @@ run_setup() {
 
 main() {
   local upstream_repo="$DEFAULT_UPSTREAM_REPO"
-  local repo_dir local_root existing_clone_path
+  local repo_dir local_root existing_clone_path setup_mode
 
-  require_cmd git
   require_cmd python3
 
-  if local_root="$(detect_local_repo_root)"; then
-    info "Detected local clone: $local_root"
-    if prompt_yes_no "Run setup now?" "Y"; then
-      run_setup "$local_root" "$@"
-    else
-      info "Skipped setup. Run this when ready:"
-      info "  (cd \"$local_root\" && ./scripts/bootstrap.sh)"
+  if have_cmd git; then
+    if local_root="$(detect_local_repo_root)"; then
+      info "Detected local clone: $local_root"
+      if prompt_yes_no "Run setup now?" "Y"; then
+        run_setup "$local_root" "$@"
+      else
+        info "Skipped setup. Run this when ready:"
+        info "  (cd \"$local_root\" && ./scripts/bootstrap.sh)"
+      fi
+      return 0
     fi
-    return 0
   fi
 
   repo_dir="$(pwd)/$(repo_name_from_slug "$upstream_repo")"
   info "No compatible local clone detected in current working tree."
   info "Upstream repository: $upstream_repo"
+  setup_mode="$(prompt_setup_mode)"
+  if [[ "$setup_mode" == "online" ]]; then
+    run_online_setup "$upstream_repo" "$@"
+    return 0
+  fi
+
+  require_cmd git
   info "Target clone directory: $repo_dir"
   if auto_detect_existing_compatible_clone "$upstream_repo" "$repo_dir"; then
     repo_dir="$BOOTSTRAP_SELECTED_REPO_DIR"

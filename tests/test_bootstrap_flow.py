@@ -77,13 +77,22 @@ if [[ "${1:-}" == "api" && "${2:-}" == "repos/aspain/git-sweaty/forks?per_page=1
   fi
   exit 0
 fi
+if [[ "${1:-}" == "api" && "${2:-}" == "repos/aspain/git-sweaty" ]]; then
+  echo "${FAKE_GH_DEFAULT_BRANCH:-main}"
+  exit 0
+fi
 if [[ "${1:-}" == "repo" && "${2:-}" == "fork" ]]; then
   exit 0
 fi
 if [[ "${1:-}" == "repo" && "${2:-}" == "view" ]]; then
   target="${3:-}"
-  if [[ -n "${FAKE_REPO_VIEW_FAIL_FOR:-}" && "${target}" == "${FAKE_REPO_VIEW_FAIL_FOR}" ]]; then
-    exit 1
+  if [[ -n "${FAKE_REPO_VIEW_FAIL_FOR:-}" ]]; then
+    IFS=',' read -r -a failures <<< "${FAKE_REPO_VIEW_FAIL_FOR}"
+    for candidate in "${failures[@]}"; do
+      if [[ "${target}" == "${candidate}" ]]; then
+        exit 1
+      fi
+    done
   fi
   exit 0
 fi
@@ -92,6 +101,28 @@ if [[ "${1:-}" == "repo" && "${2:-}" == "list" ]]; then
     printf "%s\\n" "${FAKE_GH_REPO_LIST_OUTPUT}"
   fi
   exit 0
+fi
+exit 0
+""",
+        )
+
+        _write_executable(
+            os.path.join(fake_bin, "curl"),
+            """#!/usr/bin/env bash
+set -euo pipefail
+echo "$*" >> "${FAKE_CURL_LOG}"
+out_path=""
+for ((i=1; i<=$#; i++)); do
+  arg="${!i}"
+  if [[ "${arg}" == "-o" ]]; then
+    j=$((i+1))
+    out_path="${!j}"
+    break
+  fi
+done
+if [[ -n "${out_path}" ]]; then
+  mkdir -p "$(dirname "${out_path}")"
+  : > "${out_path}"
 fi
 exit 0
 """,
@@ -128,7 +159,7 @@ exit 0
             # Existing clone path? yes -> provide path -> run setup yes
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input=f"y\n{existing_clone}\ny\n",
+                input=f"1\ny\n{existing_clone}\ny\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -169,7 +200,7 @@ exit 0
 
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input=f"y\n{existing_clone}\ny\n",
+                input=f"1\ny\n{existing_clone}\ny\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -220,7 +251,7 @@ exit 0
 
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="y\nC:\\Users\\Nikola\\source\\repos\\nedevski\\strava\ny\n",
+                input="1\ny\nC:\\Users\\Nikola\\source\\repos\\nedevski\\strava\ny\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -329,10 +360,10 @@ exit 0
             env["FAKE_GH_LOG"] = os.path.join(tmpdir, "gh.log")
             env["FAKE_PY_LOG"] = py_log
 
-            # Existing clone path? no -> fork? no -> clone upstream? yes -> run setup? no
+            # Mode local -> existing clone path? no -> fork? no -> clone upstream? yes -> run setup? no
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="n\nn\ny\nn\n",
+                input="1\nn\nn\ny\nn\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -371,10 +402,10 @@ exit 0
             env["FAKE_REPO_VIEW_FAIL_FOR"] = "tester/git-sweaty"
             env["FAKE_GH_REPO_LIST_OUTPUT"] = "tester/strava"
 
-            # Existing clone path? no -> fork? yes -> run setup? no
+            # Mode local -> existing clone path? no -> fork? yes -> run setup? no
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="n\ny\nn\n",
+                input="1\nn\ny\nn\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -409,10 +440,10 @@ exit 0
             env["FAKE_GH_REPO_LIST_OUTPUT"] = ""
             env["FAKE_GH_FORK_API_OUTPUT"] = "tester/strava"
 
-            # Existing clone path? no -> fork? yes -> run setup? no
+            # Mode local -> existing clone path? no -> fork? yes -> run setup? no
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="n\ny\nn\n",
+                input="1\nn\ny\nn\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -455,10 +486,10 @@ exit 0
             env["FAKE_REPO_VIEW_FAIL_FOR"] = "tester/git-sweaty"
             env["FAKE_GH_REPO_LIST_OUTPUT"] = "tester/strava"
 
-            # Auto-detected renamed fork clone -> run setup? yes
+            # Mode local -> auto-detected renamed fork clone -> run setup? yes
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="y\n",
+                input="1\ny\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -520,7 +551,7 @@ exit 0
 
             proc = subprocess.run(
                 ["bash", BOOTSTRAP_PATH],
-                input="y\n",
+                input="1\ny\n",
                 text=True,
                 capture_output=True,
                 cwd=run_dir,
@@ -547,6 +578,94 @@ exit 0
             with open(py_log, "r", encoding="utf-8") as f:
                 py_calls = f.read()
             self.assertIn("/source/repos/nedevski/strava|scripts/setup_auth.py", py_calls)
+
+    def test_bootstrap_online_mode_with_custom_fork_name_runs_setup_without_clone(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            fake_bin, git_log, py_log = self._make_fake_bin(tmpdir)
+            run_dir = os.path.join(tmpdir, "runner")
+            os.makedirs(run_dir, exist_ok=True)
+
+            gh_log = os.path.join(tmpdir, "gh.log")
+            curl_log = os.path.join(tmpdir, "curl.log")
+            env = os.environ.copy()
+            env["PATH"] = f"{fake_bin}:{env['PATH']}"
+            env["FAKE_GIT_LOG"] = git_log
+            env["FAKE_GH_LOG"] = gh_log
+            env["FAKE_CURL_LOG"] = curl_log
+            env["FAKE_PY_LOG"] = py_log
+            env["FAKE_REPO_VIEW_FAIL_FOR"] = "tester/git-sweaty"
+
+            proc = subprocess.run(
+                ["bash", BOOTSTRAP_PATH],
+                input="2\ny\ny\nsweaty-online\n",
+                text=True,
+                capture_output=True,
+                cwd=run_dir,
+                env=env,
+                check=False,
+            )
+            self.assertEqual(proc.returncode, 0, msg=f"{proc.stdout}\n{proc.stderr}")
+
+            with open(git_log, "r", encoding="utf-8") as f:
+                git_calls = f.read()
+            self.assertFalse(
+                any(line.startswith("clone ") for line in git_calls.splitlines()),
+                msg=git_calls,
+            )
+
+            with open(gh_log, "r", encoding="utf-8") as f:
+                gh_calls = f.read()
+            self.assertIn(
+                "repo fork aspain/git-sweaty --clone=false --remote=false --fork-name sweaty-online",
+                gh_calls,
+            )
+            self.assertIn("repo view tester/sweaty-online", gh_calls)
+
+            with open(curl_log, "r", encoding="utf-8") as f:
+                curl_calls = f.read()
+            self.assertIn(
+                "-fsSL https://raw.githubusercontent.com/aspain/git-sweaty/main/scripts/setup_auth.py",
+                curl_calls,
+            )
+
+            with open(py_log, "r", encoding="utf-8") as f:
+                py_calls = f.read()
+            self.assertIn(" --repo tester/sweaty-online", py_calls)
+
+    def test_bootstrap_online_mode_without_fork_uses_prompted_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            fake_bin, _, py_log = self._make_fake_bin(tmpdir)
+            run_dir = os.path.join(tmpdir, "runner")
+            os.makedirs(run_dir, exist_ok=True)
+
+            gh_log = os.path.join(tmpdir, "gh.log")
+            env = os.environ.copy()
+            env["PATH"] = f"{fake_bin}:{env['PATH']}"
+            env["FAKE_GIT_LOG"] = os.path.join(tmpdir, "git.log")
+            env["FAKE_GH_LOG"] = gh_log
+            env["FAKE_CURL_LOG"] = os.path.join(tmpdir, "curl.log")
+            env["FAKE_PY_LOG"] = py_log
+            env["FAKE_REPO_VIEW_FAIL_FOR"] = "tester/git-sweaty"
+
+            proc = subprocess.run(
+                ["bash", BOOTSTRAP_PATH],
+                input="2\nn\ntester/existing-online\n",
+                text=True,
+                capture_output=True,
+                cwd=run_dir,
+                env=env,
+                check=False,
+            )
+            self.assertEqual(proc.returncode, 0, msg=f"{proc.stdout}\n{proc.stderr}")
+
+            with open(gh_log, "r", encoding="utf-8") as f:
+                gh_calls = f.read()
+            self.assertNotIn("repo fork aspain/git-sweaty", gh_calls)
+            self.assertIn("repo view tester/existing-online", gh_calls)
+
+            with open(py_log, "r", encoding="utf-8") as f:
+                py_calls = f.read()
+            self.assertIn(" --repo tester/existing-online", py_calls)
 
 
 if __name__ == "__main__":

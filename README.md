@@ -22,7 +22,10 @@ bash <(curl -fsSL https://raw.githubusercontent.com/aspain/git-sweaty/main/scrip
 
 This command will guide you through:
 - `gh auth login` (if needed)
-- forking and cloning (if not already done)
+- choosing setup mode:
+  - `1` local mode (fork + clone + local setup)
+  - `2` online mode (no local clone; GitHub/terminal setup only)
+- forking (including optional custom fork name) and cloning for local mode
 - running interactive setup
 
 #### Option B (manual clone + local bootstrap script)
