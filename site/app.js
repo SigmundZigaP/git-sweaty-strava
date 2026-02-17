@@ -3486,13 +3486,25 @@ async function init() {
   function renderMenuOptions(container, options, selectedValues, isAllSelected, onSelect, normalizeValue) {
     if (!container) return;
     container.innerHTML = "";
+    const normalizedOptionValues = options
+      .filter((option) => String(option.value) !== "all")
+      .map((option) => {
+        const rawValue = String(option.value);
+        return normalizeValue ? normalizeValue(rawValue) : rawValue;
+      });
+    const hasExplicitAllSelection = !isAllSelected
+      && normalizedOptionValues.length > 0
+      && normalizedOptionValues.every((value) => selectedValues.has(value));
+    const allOptionSelected = isAllSelected || hasExplicitAllSelection;
     options.forEach((option) => {
       const rawValue = String(option.value);
       const normalized = normalizeValue ? normalizeValue(rawValue) : rawValue;
       const isActive = rawValue === "all"
-        ? isAllSelected
+        ? allOptionSelected
         : (!isAllSelected && selectedValues.has(normalized));
-      const isChecked = isAllSelected || isActive;
+      const isChecked = rawValue === "all"
+        ? allOptionSelected
+        : (isAllSelected || selectedValues.has(normalized));
 
       const row = document.createElement("div");
       row.className = "filter-menu-option";
@@ -3525,6 +3537,8 @@ async function init() {
 
   function renderMenuDoneButton(container, onDone) {
     if (!container) return;
+    const footer = document.createElement("div");
+    footer.className = "filter-menu-footer";
     const done = document.createElement("button");
     done.type = "button";
     done.className = "filter-menu-done";
@@ -3533,7 +3547,8 @@ async function init() {
       event.stopPropagation();
     });
     done.addEventListener("click", () => onDone());
-    container.appendChild(done);
+    footer.appendChild(done);
+    container.appendChild(footer);
   }
 
   let resizeTimer = null;
@@ -3963,16 +3978,27 @@ async function init() {
       typeMenuTypes,
       typeMenuSelection.allMode || typeMenuTypes.length === payload.types.length,
     );
-    const yearMenuText = getYearMenuText(yearMenuYears, yearMenuSelection.allMode);
+    const yearMenuText = getYearMenuText(
+      yearMenuYears,
+      yearMenuSelection.allMode || yearMenuYears.length === currentVisibleYears.length,
+    );
     setMenuLabel(
       typeMenuLabel,
       typeMenuText,
-      !typeMenuSelection.allMode && typeMenuTypes.length > 1 ? "Multiple Activities Selected" : "",
+      !typeMenuSelection.allMode
+      && typeMenuTypes.length > 1
+      && typeMenuTypes.length < payload.types.length
+        ? "Multiple Activities Selected"
+        : "",
     );
     setMenuLabel(
       yearMenuLabel,
       yearMenuText,
-      !yearMenuSelection.allMode && yearMenuYears.length > 1 ? "Multiple Years Selected" : "",
+      !yearMenuSelection.allMode
+      && yearMenuYears.length > 1
+      && yearMenuYears.length < currentVisibleYears.length
+        ? "Multiple Years Selected"
+        : "",
     );
     if (typeClearButton) {
       if (allTypesSelected) {
