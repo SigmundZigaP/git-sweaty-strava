@@ -64,6 +64,10 @@ const useTouchInteractions = isTouch || hasTouchInput;
 const BREAKPOINTS = Object.freeze({
   NARROW_LAYOUT_MAX: 900,
 });
+const FILTER_MENU_DROPDOWN_GAP_PX = 6;
+const FILTER_MENU_VIEWPORT_GUTTER_PX = 12;
+const FILTER_MENU_MIN_HEIGHT_PX = 180;
+const FILTER_MENU_MAX_VIEWPORT_RATIO = 0.75;
 let pendingAlignmentFrame = null;
 let pendingSummaryTailFrame = null;
 let persistentSideStatCardWidth = 0;
@@ -716,6 +720,61 @@ function setMenuOpenState(menuEl, buttonEl, isOpen) {
   }
 }
 
+function ensureFilterMenuList(container) {
+  if (!container) return null;
+  let list = container.querySelector(".filter-menu-options-list");
+  if (list) return list;
+  list = document.createElement("div");
+  list.className = "filter-menu-options-list";
+  container.appendChild(list);
+  return list;
+}
+
+function resetFilterMenuScroll(container) {
+  if (!container) return;
+  const list = container.querySelector(".filter-menu-options-list");
+  if (list) {
+    list.scrollTop = 0;
+    return;
+  }
+  container.scrollTop = 0;
+}
+
+function getFilterMenuMaxHeightPx(triggerButtonEl) {
+  if (!triggerButtonEl) return null;
+  const viewportHeight = Number(window.innerHeight || document.documentElement?.clientHeight || 0);
+  if (!viewportHeight) return null;
+  const rect = triggerButtonEl.getBoundingClientRect();
+  const spaceBelow = Math.max(
+    0,
+    viewportHeight - rect.bottom - FILTER_MENU_DROPDOWN_GAP_PX - FILTER_MENU_VIEWPORT_GUTTER_PX,
+  );
+  const viewportCap = Math.floor(viewportHeight * FILTER_MENU_MAX_VIEWPORT_RATIO);
+  const boundedCap = Math.min(spaceBelow, viewportCap);
+  const minimum = Math.min(FILTER_MENU_MIN_HEIGHT_PX, spaceBelow);
+  return Math.max(minimum, boundedCap);
+}
+
+function applyFilterMenuMaxHeight(menuEl, triggerButtonEl, optionsEl) {
+  if (!menuEl || !optionsEl || !menuEl.classList.contains("open")) {
+    if (optionsEl) {
+      optionsEl.style.removeProperty("--filter-menu-max-height");
+    }
+    return;
+  }
+  const maxHeight = getFilterMenuMaxHeightPx(triggerButtonEl);
+  if (Number.isFinite(maxHeight) && maxHeight > 0) {
+    optionsEl.style.setProperty("--filter-menu-max-height", `${Math.round(maxHeight)}px`);
+    return;
+  }
+  optionsEl.style.removeProperty("--filter-menu-max-height");
+}
+
+function syncOpenFilterMenuMaxHeights() {
+  applyFilterMenuMaxHeight(typeMenu, typeMenuButton, typeMenuOptions);
+  applyFilterMenuMaxHeight(yearMenu, yearMenuButton, yearMenuOptions);
+}
+
 function renderFilterButtons(container, options, onSelect) {
   if (!container) return;
   container.innerHTML = "";
@@ -740,6 +799,8 @@ function renderFilterMenuOptions(
 ) {
   if (!container) return;
   container.innerHTML = "";
+  const list = ensureFilterMenuList(container);
+  if (!list) return;
   const normalizedOptionValues = options
     .filter((option) => String(option.value) !== "all")
     .map((option) => {
@@ -785,7 +846,7 @@ function renderFilterMenuOptions(
       event.stopPropagation();
     });
     row.addEventListener("click", () => onSelect(rawValue));
-    container.appendChild(row);
+    list.appendChild(row);
   });
 }
 
@@ -4136,6 +4197,8 @@ async function init() {
   function update(options = {}) {
     const keepTypeMenuOpen = Boolean(options.keepTypeMenuOpen);
     const keepYearMenuOpen = Boolean(options.keepYearMenuOpen);
+    const resetTypeMenuScroll = Boolean(options.resetTypeMenuScroll);
+    const resetYearMenuScroll = Boolean(options.resetYearMenuScroll);
     const menuOnly = Boolean(options.menuOnly);
     const resetCardScroll = Boolean(options.resetCardScroll);
     const resetViewport = Boolean(options.resetViewport);
@@ -4226,6 +4289,14 @@ async function init() {
       typeMenuButton,
       yearMenuButton,
     });
+
+    syncOpenFilterMenuMaxHeights();
+    if (resetTypeMenuScroll) {
+      resetFilterMenuScroll(typeMenuOptions);
+    }
+    if (resetYearMenuScroll) {
+      resetFilterMenuScroll(yearMenuOptions);
+    }
 
     if (menuOnly) {
       return;
@@ -4526,7 +4597,7 @@ async function init() {
       draftYearMenuSelection = null;
       setMenuOpenState(typeMenu, typeMenuButton, open);
       setMenuOpenState(yearMenu, yearMenuButton, false);
-      update({ keepTypeMenuOpen: open, menuOnly: true });
+      update({ keepTypeMenuOpen: open, menuOnly: true, resetTypeMenuScroll: open });
     });
   }
   if (yearMenuButton) {
@@ -4541,7 +4612,7 @@ async function init() {
       draftTypeMenuSelection = null;
       setMenuOpenState(yearMenu, yearMenuButton, open);
       setMenuOpenState(typeMenu, typeMenuButton, false);
-      update({ keepYearMenuOpen: open, menuOnly: true });
+      update({ keepYearMenuOpen: open, menuOnly: true, resetYearMenuScroll: open });
     });
   }
   if (typeClearButton) {
@@ -4661,6 +4732,7 @@ async function init() {
       const isNarrowLayout = isNarrowLayoutViewport();
       const widthChanged = Math.abs(width - lastViewportWidth) >= 1;
       const layoutModeChanged = isNarrowLayout !== lastIsNarrowLayout;
+      syncOpenFilterMenuMaxHeights();
       if (!widthChanged && !layoutModeChanged) {
         return;
       }
