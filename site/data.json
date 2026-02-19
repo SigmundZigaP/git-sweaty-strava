@@ -6716,7 +6716,7 @@
         },
         "2026-02-15": {
           "activity_ids": [
-            17408321230
+            "17408321230"
           ],
           "count": 1,
           "distance": 39999.1,
@@ -6725,7 +6725,7 @@
         },
         "2026-02-17": {
           "activity_ids": [
-            17429990217
+            "17429990217"
           ],
           "count": 1,
           "distance": 25566.6,
@@ -6735,8 +6735,10 @@
       }
     }
   },
-  "generated_at": "2026-02-18T15:56:52.689905+00:00",
+  "generated_at": "2026-02-19T15:54:12.510243+00:00",
   "other_bucket": "OtherSports",
+  "repo": "SigmundZigaP/git-sweaty-strava",
+  "source": "strava",
   "type_meta": {
     "EMountainBikeRide": {
       "accent": "#72efdd",
@@ -6785,6 +6787,7 @@
     "distance": "km",
     "elevation": "m"
   },
+  "week_start": "monday",
   "years": [
     2020,
     2021,
