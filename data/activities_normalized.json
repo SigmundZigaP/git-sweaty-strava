@@ -5282,5 +5282,18 @@
     "start_date_local": "2026-02-22T17:30:41Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-02-25",
+    "distance": 47893.2,
+    "elevation_gain": 220.2,
+    "id": "17519569229",
+    "moving_time": 6157.0,
+    "name": "Prva letos",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-02-25T15:10:51Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
