@@ -5308,5 +5308,18 @@
     "start_date_local": "2026-03-01T14:41:54Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-03-05",
+    "distance": 29708.7,
+    "elevation_gain": 350.0,
+    "id": "17615837026",
+    "moving_time": 4439.0,
+    "name": "ROUVY - Sweet Spot Stamina",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-05T17:38:50Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
