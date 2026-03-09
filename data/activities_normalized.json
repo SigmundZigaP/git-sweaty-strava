@@ -5321,5 +5321,18 @@
     "start_date_local": "2026-03-05T17:38:50Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-03-08",
+    "distance": 63055.2,
+    "elevation_gain": 279.6,
+    "id": "17650691418",
+    "moving_time": 8087.0,
+    "name": "Are we gonna do this all night? My parts are killing me (156/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-03-08T14:27:42Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
