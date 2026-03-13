@@ -5334,5 +5334,31 @@
     "start_date_local": "2026-03-08T14:27:42Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-03-12",
+    "distance": 21299.4,
+    "elevation_gain": 59.0,
+    "id": "17698861108",
+    "moving_time": 2404.0,
+    "name": "ROUVY - La Vuelta 2023 | Stage 12 - Zaragoza",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-12T17:24:03Z",
+    "type": "VirtualRide",
+    "year": 2026
+  },
+  {
+    "date": "2026-03-12",
+    "distance": 1106.1,
+    "elevation_gain": 80.0,
+    "id": "17698995370",
+    "moving_time": 334.0,
+    "name": "ROUVY - Radol\u0161ki KronoKILOmeter",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-12T18:06:55Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
