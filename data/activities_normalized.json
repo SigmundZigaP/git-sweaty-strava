@@ -5360,5 +5360,18 @@
     "start_date_local": "2026-03-12T18:06:55Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-03-17",
+    "distance": 29658.7,
+    "elevation_gain": 441.0,
+    "id": "17756697905",
+    "moving_time": 4161.0,
+    "name": "ROUVY - Poggi to Poggio San Remo via Cipressa | Italy",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-17T17:21:48Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
