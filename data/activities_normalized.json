@@ -5373,5 +5373,31 @@
     "start_date_local": "2026-03-17T17:21:48Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-03-21",
+    "distance": 30094.5,
+    "elevation_gain": 391.0,
+    "id": "17806531939",
+    "moving_time": 3905.0,
+    "name": "ROUVY - RideCymru 2026 | Eryri National Park",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-21T17:38:32Z",
+    "type": "VirtualRide",
+    "year": 2026
+  },
+  {
+    "date": "2026-03-22",
+    "distance": 7519.7,
+    "elevation_gain": 50.6,
+    "id": "17816882553",
+    "moving_time": 5495.0,
+    "name": "Hoja na prostem",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-03-22T12:22:04Z",
+    "type": "Walk",
+    "year": 2026
   }
 ]
