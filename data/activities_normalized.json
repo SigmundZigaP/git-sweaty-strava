@@ -5399,5 +5399,18 @@
     "start_date_local": "2026-03-22T12:22:04Z",
     "type": "Walk",
     "year": 2026
+  },
+  {
+    "date": "2026-03-25",
+    "distance": 25818.2,
+    "elevation_gain": 463.0,
+    "id": "17855410959",
+    "moving_time": 4122.0,
+    "name": "ROUVY - Vrhnika in Ride do Postojne",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-03-25T16:53:55Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
