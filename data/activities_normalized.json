@@ -5464,5 +5464,18 @@
     "start_date_local": "2026-04-06T14:52:51Z",
     "type": "Walk",
     "year": 2026
+  },
+  {
+    "date": "2026-04-07",
+    "distance": 62900.1,
+    "elevation_gain": 278.3,
+    "id": "18016134195",
+    "moving_time": 7923.0,
+    "name": "About As Sharp As A Sock Full Of Soup. (TdP 219/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-07T16:44:40Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
