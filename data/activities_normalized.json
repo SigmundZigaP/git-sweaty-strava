@@ -5477,5 +5477,18 @@
     "start_date_local": "2026-04-07T16:44:40Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-04-11",
+    "distance": 12162.1,
+    "elevation_gain": 812.0,
+    "id": "18069819209",
+    "moving_time": 4673.0,
+    "name": "ROUVY - Vr\u0161i\u010d Pass from Kranjska Gora | Slovenia",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-04-11T18:15:39Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
