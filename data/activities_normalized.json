@@ -5503,5 +5503,18 @@
     "start_date_local": "2026-04-16T15:46:38Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-04-19",
+    "distance": 28619.0,
+    "elevation_gain": 303.0,
+    "id": "18174694841",
+    "moving_time": 3682.0,
+    "name": "ROUVY - Nusfjord to Haukland Beach | Norway",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-04-19T17:07:02Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
