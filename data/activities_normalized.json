@@ -5516,5 +5516,18 @@
     "start_date_local": "2026-04-19T17:07:02Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-04-22",
+    "distance": 41272.3,
+    "elevation_gain": 151.1,
+    "id": "18214671776",
+    "moving_time": 5758.0,
+    "name": "I'm gonna call you tonight and you need to pretend to be Peyton Manning or Papa John. (TdP 302/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-04-22T16:41:22Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
