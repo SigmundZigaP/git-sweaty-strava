@@ -5542,5 +5542,18 @@
     "start_date_local": "2026-04-26T15:21:42Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-04-30",
+    "distance": 31999.0,
+    "elevation_gain": 186.0,
+    "id": "18320821400",
+    "moving_time": 3579.0,
+    "name": "ROUVY - Avenue of the Giants | California | USA",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-04-30T17:04:45Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
