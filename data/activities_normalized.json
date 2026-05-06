@@ -5568,5 +5568,18 @@
     "start_date_local": "2026-05-02T15:57:31Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-05",
+    "distance": 55562.2,
+    "elevation_gain": 195.3,
+    "id": "18388344028",
+    "moving_time": 7029.0,
+    "name": "Perpetual imminent death. (TdP 484/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-05T16:38:47Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
