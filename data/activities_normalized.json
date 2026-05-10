@@ -5581,5 +5581,18 @@
     "start_date_local": "2026-05-05T16:38:47Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-10",
+    "distance": 98946.9,
+    "elevation_gain": 976.1,
+    "id": "18452743498",
+    "moving_time": 14427.0,
+    "name": "Gorica, Kras, ... (TdP 583/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-10T09:50:23Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
