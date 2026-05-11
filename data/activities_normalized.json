@@ -5594,5 +5594,18 @@
     "start_date_local": "2026-05-10T09:50:23Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-10",
+    "distance": 3735.2,
+    "elevation_gain": 32.3,
+    "id": "18456100040",
+    "moving_time": 718.0,
+    "name": "Razpeljava s pice (Tdp 587/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-10T16:53:55Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
