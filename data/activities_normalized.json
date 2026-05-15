@@ -5607,5 +5607,18 @@
     "start_date_local": "2026-05-10T16:53:55Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-15",
+    "distance": 24998.6,
+    "elevation_gain": 300.0,
+    "id": "18518962073",
+    "moving_time": 2599.0,
+    "name": "ROUVY - Group Ride: Freitagsrunde",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-05-15T18:00:00Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
