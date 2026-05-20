@@ -5620,5 +5620,18 @@
     "start_date_local": "2026-05-15T18:00:00Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-05-19",
+    "distance": 61938.1,
+    "elevation_gain": 297.0,
+    "id": "18572510905",
+    "moving_time": 7835.0,
+    "name": "You don't want to mess with my sister. She'll wear down your self-esteem over a period of years. (TdP 649/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-19T16:41:12Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
