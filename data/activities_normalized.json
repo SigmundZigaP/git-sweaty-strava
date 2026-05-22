@@ -5633,5 +5633,18 @@
     "start_date_local": "2026-05-19T16:41:12Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-22",
+    "distance": 46469.5,
+    "elevation_gain": 300.4,
+    "id": "18610263708",
+    "moving_time": 6208.0,
+    "name": "I'm not lazy, I'm energy efficient. (TdP 695/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-22T14:46:30Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
