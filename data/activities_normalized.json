@@ -5646,5 +5646,18 @@
     "start_date_local": "2026-05-22T14:46:30Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-26",
+    "distance": 60579.9,
+    "elevation_gain": 328.7,
+    "id": "18664608203",
+    "moving_time": 7902.0,
+    "name": "The Economy Stinks, Bees Are Dying, And Movies Are Pretty Much All Sequels Now. (TdP 756/820)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-26T16:45:51Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
