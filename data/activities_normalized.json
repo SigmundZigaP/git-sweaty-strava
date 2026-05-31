@@ -5659,5 +5659,31 @@
     "start_date_local": "2026-05-26T16:45:51Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-05-31",
+    "distance": 72947.7,
+    "elevation_gain": 323.4,
+    "id": "18725292477",
+    "moving_time": 9632.0,
+    "name": "I'm loving it. (TdP 829/820: DONE)",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-31T07:34:43Z",
+    "type": "Ride",
+    "year": 2026
+  },
+  {
+    "date": "2026-05-31",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "18729697656",
+    "moving_time": 107.0,
+    "name": "2026-05-31Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-05-31T15:52:53Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
