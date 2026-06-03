@@ -5685,5 +5685,18 @@
     "start_date_local": "2026-05-31T15:52:53Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-06-02",
+    "distance": 69170.5,
+    "elevation_gain": 380.5,
+    "id": "18760147371",
+    "moving_time": 8927.0,
+    "name": "I can feel the righteousness surging!",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-02T16:40:53Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
