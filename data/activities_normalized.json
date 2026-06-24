@@ -5750,5 +5750,18 @@
     "start_date_local": "2026-06-19T09:50:05Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-06-23",
+    "distance": 57927.6,
+    "elevation_gain": 554.5,
+    "id": "19039557243",
+    "moving_time": 8466.0,
+    "name": "Game over man. Game over!",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-06-23T17:12:07Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
