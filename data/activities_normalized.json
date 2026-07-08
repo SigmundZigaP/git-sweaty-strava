@@ -5776,5 +5776,18 @@
     "start_date_local": "2026-07-02T16:18:29Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-07-07",
+    "distance": 63318.0,
+    "elevation_gain": 279.5,
+    "id": "19218740614",
+    "moving_time": 8280.0,
+    "name": "Like a lion in orange dungarees. Kind of fierce, but ridiculous all at the same time.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-07-07T17:10:13Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
