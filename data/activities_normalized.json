@@ -5789,5 +5789,18 @@
     "start_date_local": "2026-07-07T17:10:13Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-07-12",
+    "distance": 46794.5,
+    "elevation_gain": 323.6,
+    "id": "19277737170",
+    "moving_time": 6131.0,
+    "name": "Gets real simple, doesn't it? When you're the one they're coming for.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-07-12T07:47:06Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
