@@ -5802,5 +5802,18 @@
     "start_date_local": "2026-07-12T07:47:06Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-07-19",
+    "distance": 68872.8,
+    "elevation_gain": 287.3,
+    "id": "19378547246",
+    "moving_time": 9294.0,
+    "name": "Honey? Where's my super suit?",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-07-19T14:12:04Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
