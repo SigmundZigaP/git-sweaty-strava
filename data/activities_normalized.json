@@ -5815,5 +5815,18 @@
     "start_date_local": "2026-07-19T14:12:04Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-07-26",
+    "distance": 64156.6,
+    "elevation_gain": 294.5,
+    "id": "19469322322",
+    "moving_time": 8490.0,
+    "name": "I coulda had class. I coulda been a contender.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-07-26T08:41:31Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
