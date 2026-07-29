@@ -5841,5 +5841,18 @@
     "start_date_local": "2026-07-28T09:08:53Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-07-29",
+    "distance": 13170.1,
+    "elevation_gain": 486.6,
+    "id": "19513183956",
+    "moving_time": 11648.0,
+    "name": "Kope, Ribni\u0161ko jezero",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-07-29T08:42:35Z",
+    "type": "Walk",
+    "year": 2026
   }
 ]
