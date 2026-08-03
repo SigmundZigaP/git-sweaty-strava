@@ -5867,5 +5867,18 @@
     "start_date_local": "2026-07-30T08:36:15Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-03",
+    "distance": 91603.0,
+    "elevation_gain": 682.8,
+    "id": "19580457332",
+    "moving_time": 12656.0,
+    "name": "\u0160trekna",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-08-03T07:39:57Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
