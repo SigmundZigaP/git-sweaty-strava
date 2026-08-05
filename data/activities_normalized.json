@@ -5880,5 +5880,18 @@
     "start_date_local": "2026-08-03T07:39:57Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-05",
+    "distance": 7796.4,
+    "elevation_gain": 616.6,
+    "id": "19610809301",
+    "moving_time": 10170.0,
+    "name": "Ur\u0161lja gora",
+    "raw_activity_type": "Hike",
+    "raw_type": "Hike",
+    "start_date_local": "2026-08-05T08:04:51Z",
+    "type": "Hike",
+    "year": 2026
   }
 ]
