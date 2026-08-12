@@ -5906,5 +5906,18 @@
     "start_date_local": "2026-08-09T08:36:28Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-11",
+    "distance": 54435.4,
+    "elevation_gain": 669.0,
+    "id": "19700259180",
+    "moving_time": 8275.0,
+    "name": "Before the Wright Brothers invented the airplane, anyone wanting to fly anywhere was required to eat 200 pounds of helium.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-08-11T16:37:32Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
