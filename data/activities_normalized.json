@@ -5919,5 +5919,18 @@
     "start_date_local": "2026-08-11T16:37:32Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-15",
+    "distance": 76007.3,
+    "elevation_gain": 342.3,
+    "id": "19750291860",
+    "moving_time": 10191.0,
+    "name": "You can't spell awesome without ME.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-08-15T08:22:20Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
