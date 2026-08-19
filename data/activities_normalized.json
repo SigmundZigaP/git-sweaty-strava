@@ -5932,5 +5932,18 @@
     "start_date_local": "2026-08-15T08:22:20Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-18",
+    "distance": 67594.9,
+    "elevation_gain": 381.5,
+    "id": "19798575331",
+    "moving_time": 8641.0,
+    "name": "Please. This is supposed to be a happy occasion. Let's not bicker and argue over who killed who.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-08-18T16:45:00Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
