@@ -5945,5 +5945,18 @@
     "start_date_local": "2026-08-18T16:45:00Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-08-26",
+    "distance": 67731.3,
+    "elevation_gain": 295.4,
+    "id": "19912791072",
+    "moving_time": 8411.0,
+    "name": "This Is a Slobberknocker!",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-08-26T16:39:29Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
