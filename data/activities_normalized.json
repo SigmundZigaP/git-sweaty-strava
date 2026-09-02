@@ -5958,5 +5958,18 @@
     "start_date_local": "2026-08-26T16:39:29Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-01",
+    "distance": 49308.7,
+    "elevation_gain": 678.8,
+    "id": "19994783548",
+    "moving_time": 7945.0,
+    "name": "Limbarska s Felixi 1S",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-01T16:42:13Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
