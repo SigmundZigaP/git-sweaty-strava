@@ -5971,5 +5971,18 @@
     "start_date_local": "2026-09-01T16:42:13Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-08",
+    "distance": 53788.1,
+    "elevation_gain": 519.1,
+    "id": "20093459128",
+    "moving_time": 7936.0,
+    "name": "Is there a problem with Earth's gravitational pull in the future? Why is everything so heavy?",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-08T16:39:15Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
