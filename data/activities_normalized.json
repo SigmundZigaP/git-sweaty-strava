@@ -5997,5 +5997,18 @@
     "start_date_local": "2026-09-12T09:07:02Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-16",
+    "distance": 67249.9,
+    "elevation_gain": 311.4,
+    "id": "20203114952",
+    "moving_time": 8280.0,
+    "name": "It's so easy, anyone can do it. Even anyone.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-16T16:40:51Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
