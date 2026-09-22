@@ -6010,5 +6010,18 @@
     "start_date_local": "2026-09-16T16:40:51Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-22",
+    "distance": 56040.3,
+    "elevation_gain": 229.3,
+    "id": "20285835551",
+    "moving_time": 7596.0,
+    "name": "Don't you know the first law of physics? Anything tha's fun costs at least eight dollars.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-22T16:23:29Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
