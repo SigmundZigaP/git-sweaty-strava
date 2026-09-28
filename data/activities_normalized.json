@@ -6023,5 +6023,18 @@
     "start_date_local": "2026-09-22T16:23:29Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-28",
+    "distance": 72784.9,
+    "elevation_gain": 411.3,
+    "id": "20367236320",
+    "moving_time": 10331.0,
+    "name": "A1/SRC Ride",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-28T14:16:20Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
