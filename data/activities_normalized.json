@@ -6036,5 +6036,18 @@
     "start_date_local": "2026-09-28T14:16:20Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-09-29",
+    "distance": 55359.6,
+    "elevation_gain": 227.9,
+    "id": "20381575113",
+    "moving_time": 6925.0,
+    "name": "Live every day like it's Taco Tuesday.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-09-29T16:24:59Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
