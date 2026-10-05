@@ -6049,5 +6049,18 @@
     "start_date_local": "2026-09-29T16:24:59Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-10-05",
+    "distance": 57081.7,
+    "elevation_gain": 724.4,
+    "id": "20461549175",
+    "moving_time": 9492.0,
+    "name": "Gori doli po Primorski",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-10-05T13:55:42Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
