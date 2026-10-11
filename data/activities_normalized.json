@@ -6062,5 +6062,18 @@
     "start_date_local": "2026-10-05T13:55:42Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-10-11",
+    "distance": 64408.1,
+    "elevation_gain": 787.6,
+    "id": "20540726167",
+    "moving_time": 9398.0,
+    "name": "Anonimity... is like a warm blanket.",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-10-11T10:12:00Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
