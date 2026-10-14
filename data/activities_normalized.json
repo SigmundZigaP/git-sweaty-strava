@@ -6075,5 +6075,18 @@
     "start_date_local": "2026-10-11T10:12:00Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-10-11",
+    "distance": 64037.2,
+    "elevation_gain": 728.0,
+    "id": "20577511334",
+    "moving_time": 9357.0,
+    "name": "Breaking in the new socks!",
+    "raw_activity_type": "Ride",
+    "raw_type": "Ride",
+    "start_date_local": "2026-10-11T10:14:32Z",
+    "type": "Ride",
+    "year": 2026
   }
 ]
