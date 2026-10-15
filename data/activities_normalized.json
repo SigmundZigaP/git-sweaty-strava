@@ -6088,5 +6088,31 @@
     "start_date_local": "2026-10-11T10:14:32Z",
     "type": "Ride",
     "year": 2026
+  },
+  {
+    "date": "2026-10-15",
+    "distance": 1567.1,
+    "elevation_gain": 3.8,
+    "id": "20593574560",
+    "moving_time": 1281.0,
+    "name": "Hoja na prostem",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-10-15T12:24:53Z",
+    "type": "Walk",
+    "year": 2026
+  },
+  {
+    "date": "2026-10-15",
+    "distance": 1548.9,
+    "elevation_gain": 6.6,
+    "id": "20594284912",
+    "moving_time": 1201.0,
+    "name": "Hoja na prostem",
+    "raw_activity_type": "Walk",
+    "raw_type": "Walk",
+    "start_date_local": "2026-10-15T13:18:04Z",
+    "type": "Walk",
+    "year": 2026
   }
 ]
