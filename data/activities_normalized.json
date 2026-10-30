@@ -6127,5 +6127,18 @@
     "start_date_local": "2026-10-27T16:37:57Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-10-30",
+    "distance": 23400.3,
+    "elevation_gain": 295.0,
+    "id": "20793986328",
+    "moving_time": 3480.0,
+    "name": "ROUVY - RBC GranFondo Whistler - Sea to Sky",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-10-30T17:48:12Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
