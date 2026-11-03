@@ -6140,5 +6140,18 @@
     "start_date_local": "2026-10-30T17:48:12Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-03",
+    "distance": 22642.1,
+    "elevation_gain": 178.0,
+    "id": "20847298138",
+    "moving_time": 2139.0,
+    "name": "ROUVY - Group Ride: #1 Virtualni TdP",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-03T20:00:00Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
