@@ -6153,5 +6153,18 @@
     "start_date_local": "2026-11-03T20:00:00Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-08",
+    "distance": 31389.6,
+    "elevation_gain": 277.0,
+    "id": "20912114211",
+    "moving_time": 4546.0,
+    "name": "ROUVY - Over-Under Calorie Intervals",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-08T17:32:12Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
