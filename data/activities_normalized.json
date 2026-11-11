@@ -6166,5 +6166,31 @@
     "start_date_local": "2026-11-08T17:32:12Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-11",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "20942898945",
+    "moving_time": 3730.0,
+    "name": "Joga",
+    "raw_activity_type": "Yoga",
+    "raw_type": "Yoga",
+    "start_date_local": "2026-11-11T08:30:28Z",
+    "type": "Yoga",
+    "year": 2026
+  },
+  {
+    "date": "2026-11-11",
+    "distance": 25668.8,
+    "elevation_gain": 304.0,
+    "id": "20949589108",
+    "moving_time": 4444.0,
+    "name": "ROUVY - Light Tempo Maintenance",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-11T17:07:34Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]

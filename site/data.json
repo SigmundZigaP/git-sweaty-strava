@@ -3555,6 +3555,20 @@
       "subtype": "VirtualRide",
       "type": "VirtualRide",
       "year": 2026
+    },
+    {
+      "date": "2026-11-11",
+      "hour": 8,
+      "subtype": "Yoga",
+      "type": "Yoga",
+      "year": 2026
+    },
+    {
+      "date": "2026-11-11",
+      "hour": 17,
+      "subtype": "VirtualRide",
+      "type": "VirtualRide",
+      "year": 2026
     }
   ],
   "aggregates": {
@@ -7760,6 +7774,15 @@
           "distance": 31389.6,
           "elevation_gain": 277.0,
           "moving_time": 4546.0
+        },
+        "2026-11-11": {
+          "activity_ids": [
+            "20949589108"
+          ],
+          "count": 1,
+          "distance": 25668.8,
+          "elevation_gain": 304.0,
+          "moving_time": 4444.0
         }
       },
       "Walk": {
@@ -7818,10 +7841,21 @@
           "elevation_gain": 10.399999999999999,
           "moving_time": 2482.0
         }
+      },
+      "Yoga": {
+        "2026-11-11": {
+          "activity_ids": [
+            "20942898945"
+          ],
+          "count": 1,
+          "distance": 0.0,
+          "elevation_gain": 0.0,
+          "moving_time": 3730.0
+        }
       }
     }
   },
-  "generated_at": "2026-11-10T21:13:55.873532+00:00",
+  "generated_at": "2026-11-11T21:47:50.292635+00:00",
   "other_bucket": "OtherSports",
   "repo": "SigmundZigaP/git-sweaty-strava",
   "source": "strava",
@@ -7857,6 +7891,10 @@
     "Workout": {
       "accent": "#ff8a5b",
       "label": "Other Workout"
+    },
+    "Yoga": {
+      "accent": "#f15bb5",
+      "label": "Yoga"
     }
   },
   "types": [
@@ -7867,7 +7905,8 @@
     "Run",
     "VirtualRide",
     "Walk",
-    "Workout"
+    "Workout",
+    "Yoga"
   ],
   "units": {
     "distance": "mi",
