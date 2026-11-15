@@ -6192,5 +6192,18 @@
     "start_date_local": "2026-11-11T17:07:34Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-15",
+    "distance": 8603.0,
+    "elevation_gain": 240.0,
+    "id": "21000309285",
+    "moving_time": 2121.0,
+    "name": "ROUVY - FTP Ramp Test Lite",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-15T17:26:55Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
