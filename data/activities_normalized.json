@@ -6205,5 +6205,18 @@
     "start_date_local": "2026-11-15T17:26:55Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-18",
+    "distance": 0.0,
+    "elevation_gain": 0.0,
+    "id": "21039578869",
+    "moving_time": 3820.0,
+    "name": "Joga",
+    "raw_activity_type": "Yoga",
+    "raw_type": "Yoga",
+    "start_date_local": "2026-11-18T08:27:36Z",
+    "type": "Yoga",
+    "year": 2026
   }
 ]
