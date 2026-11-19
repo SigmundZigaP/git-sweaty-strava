@@ -6218,5 +6218,31 @@
     "start_date_local": "2026-11-18T08:27:36Z",
     "type": "Yoga",
     "year": 2026
+  },
+  {
+    "date": "2026-11-19",
+    "distance": 11400.4,
+    "elevation_gain": 77.0,
+    "id": "21050036530",
+    "moving_time": 1337.0,
+    "name": "ROUVY - Vienna - Europe's cultural capital",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-19T19:22:00Z",
+    "type": "VirtualRide",
+    "year": 2026
+  },
+  {
+    "date": "2026-11-19",
+    "distance": 16998.3,
+    "elevation_gain": 260.0,
+    "id": "21050669593",
+    "moving_time": 2265.0,
+    "name": "ROUVY - Group Ride: #6 Virtualni TdP",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-19T20:00:00Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
