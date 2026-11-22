@@ -6244,5 +6244,18 @@
     "start_date_local": "2026-11-19T20:00:00Z",
     "type": "VirtualRide",
     "year": 2026
+  },
+  {
+    "date": "2026-11-22",
+    "distance": 28970.2,
+    "elevation_gain": 266.0,
+    "id": "21086818296",
+    "moving_time": 4198.0,
+    "name": "ROUVY - Sweet Spot Progression",
+    "raw_activity_type": "VirtualRide",
+    "raw_type": "VirtualRide",
+    "start_date_local": "2026-11-22T17:24:57Z",
+    "type": "VirtualRide",
+    "year": 2026
   }
 ]
